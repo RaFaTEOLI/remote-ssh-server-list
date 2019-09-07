@@ -1,0 +1,17 @@
+body { margin:0 }
+
+main {
+    min-height: 480px;
+    margin:0 auto;
+}
+
+#center {
+    margin: auto;
+    width: 50%;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+h2 {
+    text-align: center;
+}
