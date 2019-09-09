@@ -62,12 +62,22 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <?php
+
                 if (isset($command)) {
                     while($servers = mysqli_fetch_assoc($select)) {
                         ?>
                         <label for ="output">Output for command (<?php echo $command ?>) on <?php echo "{$servers["name"]}"; ?></label>
+                        <?php 
+                        if ($servers["use_rsa"] == 1) {
+                            echo "Using RSA key...";
+                        ?>
+                            <div class="well"><?php executeCommandWithRSAKey($command, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></div>
+                        <?php    
+                        } else {
+                        ?>
                         <div class="well"><?php executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
                         <?php
+                        }
                     }
                 }
                 ?>

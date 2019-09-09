@@ -29,7 +29,13 @@
 	// Enters the while to execute the command on each server
 	while($servers = mysqli_fetch_assoc($select)) {
 	    echo "Executing command ($command) on {$servers["name"]}...<br>";
-		executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]);
+
+	    if ($servers["use_rsa"] == 1) {
+	    	echo "Using RSA key..." . "<br>";
+	    	executeCommandWithRSAKey($command, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]);
+	    } else {
+	    	executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]);
+	    }
 		echo "<br>";
 	}
 
