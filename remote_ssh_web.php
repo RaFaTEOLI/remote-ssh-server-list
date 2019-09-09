@@ -72,6 +72,7 @@
                             <div class="well"><?php executeCommandWithRSAKey($command, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></div>
                         <?php    
                         } else {
+                            echo "Using Password Authentication...";
                         ?>
                         <div class="well"><?php executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
                         <?php
