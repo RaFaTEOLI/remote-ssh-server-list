@@ -1,4 +1,4 @@
-# remote_ssh_server_list
+# Remote SSH Server List
  
 Execute a command on many servers all at once.
 
