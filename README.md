@@ -14,7 +14,7 @@ Don't forget to change the parameters in order to open the connection with your 
 
 If you want to get in touch with me here is my email: rafinha.tessarolo@hotmail.com
 
-<h2>Version 1.0 added ignore_server field</h2>
+<h1>Version 1.0 added ignore_server field</h1>
 If you want to ignore a server on the list just set the field ignore_server to 1 on servers table.
 
 <h2>Version 1.0.1 added use_rsa field</h2>
