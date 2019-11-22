@@ -11,6 +11,7 @@
         // Connects to SSH server
         if (!$ssh->login($user, $password)) {
             exit('Login Failed');
+            //echo "Login Failed";
         }
 
         // Executes the command
@@ -30,6 +31,7 @@
         // Connects to SSH server
         if (!$ssh->login($user, $key)) {
             exit('Login Failed');
+            //echo "Login Failed";
         }
 
         // Executes the command

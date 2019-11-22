@@ -2,7 +2,7 @@
 /* ------------------------------------------------------------- */
 /* --------------- Remote SSH ---------------------------------- */
 /* --------------- Developed by Rafael Tessarolo --------------- */
-/* --------------- Version 1.0 --------------------------------- */
+/* --------------- Version 1.1 --------------------------------- */
 /* ------------------------------------------------------------- */
 
     // Requires Connection to MySQL
@@ -11,18 +11,13 @@
     // Requires ssh functions
     require_once("functions/functions.php");
 
-    // Verifies if the command field has a value
+    // Requires DAO
+    require_once("dao/DaoRemoteSSH.php");
+
+    // Verifies if the command field has a value and if it does, it executes the select
     if (isset($_POST["command"])) {
         $command = $_POST["command"];
-
-        // Builds the select query
-        $query_servers = "SELECT * FROM servers WHERE ignore_server <> 1 LIMIT 500";
-        $select = mysqli_query($conn, $query_servers);
-
-        // Sees if it returns an error
-        if (!$select) {
-            die("Failed to execute query!");
-        }
+        $select = getServers();
     }
 ?>
 <!DOCTYPE HTML>
