@@ -14,3 +14,15 @@ CREATE TABLE servers (
   COLLATE='latin1_swedish_ci'
   ENGINE=InnoDB
 ;
+
+CREATE TABLE config (
+  id INT(10) NOT NULL AUTO_INCREMENT,
+  stop_on_error INT(1) NOT NULL DEFAULT '0',
+  ignoreServer_afterCmd INT(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (id)
+)
+  COLLATE='latin1_swedish_ci'
+  ENGINE=InnoDB
+;
+
+INSERT INTO config (stop_on_error, ignoreServer_afterCmd) VALUES (0, 0);

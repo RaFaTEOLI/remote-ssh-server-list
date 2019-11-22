@@ -9,31 +9,38 @@
     require_once("mysql_conn/conn.php");
 
     // Requires ssh functions
-    require_once("functions/functions.php");
+	require_once("functions/functions.php");
+	
+	// Requires DAO
+    require_once("dao/remote_ssh.php");
 
-	// Builds the select query
-	$query_servers = "SELECT * FROM servers WHERE ignore_server <> 1 LIMIT 500";
-	$select = mysqli_query($conn, $query_servers);
+	// Sets the variable select with the servers list
+	$select = getServers($conn);
 
-	// Sees if it returns an error
-	if (!$select) {
-		die("Failed to execute query!");
-	}
+	// Sets the variable config with the program config
+	$config = getConfig($conn);
 
 	// Creates the variable command
 	$command = "ifconfig";
-
 
 	// Enters the while to execute the command on each server
 	while($servers = mysqli_fetch_assoc($select)) {
 	    echo "Executing command ($command) on {$servers["name"]}...<br>";
 
 	    if ($servers["use_rsa"] == 1) {
-	    	echo "Using RSA key..." . "<br>";
-	    	executeCommandWithRSAKey($command, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]);
+			echo "Using RSA key..." . "<br>";
+			// Calls the function to execute the command on SSH using RSA Key
+			executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]);
+			if ($config["ignoreServer_afterCmd"] == 1) {
+				setIgnore($conn, $servers["id"]);
+			}
 	    } else {
-	    	echo "Using Password Authentication..." . "<br>";
-	    	executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]);
+			echo "Using Password Authentication..." . "<br>";
+			// Calls the function to execute the command on SSH using Password Authentication
+			executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]);
+			if ($config["ignoreServer_afterCmd"] == 1) {
+				setIgnore($conn, $servers["id"]);
+			}
 	    }
 		echo "<br>";
 	}

@@ -5,13 +5,21 @@
     set_include_path(get_include_path().PATH_SEPARATOR.'phpseclib');
 
 	// Function that receives the parameters to execute the command on ssh with authentication by password
-    function executeCommand($command, $ip, $user, $password, $port) {
+    function executeCommand($command, $conn, $ip, $user, $password, $port) {
         $ssh = new Net_SSH2($ip, $port);
+
+        // Requires DAO
+        require_once("dao/remote_ssh.php");
+
+        $config = getConfig($conn);
 
         // Connects to SSH server
         if (!$ssh->login($user, $password)) {
-            exit('Login Failed');
-            //echo "Login Failed";
+            if ($config["stop_on_error"] == 1) {
+                exit('Login Failed');
+            } else {
+                echo "Login Failed";
+            }
         }
 
         // Executes the command
@@ -21,17 +29,25 @@
     }
 
     // Function that receives the parameters to execute the command on ssh with authentication by rsa key
-    function executeCommandWithRSAKey($command, $ip, $user, $port, $key_path, $passphrase) {
+    function executeCommandWithRSAKey($command, $conn, $ip, $user, $port, $key_path, $passphrase) {
         $ssh = new Net_SSH2($ip, $port);
         $key = new Crypt_RSA();
 
         $key->setPassword($passphrase);
         $key->loadKey(file_get_contents($key_path));
 
+        // Requires DAO
+        require_once("dao/remote_ssh.php");
+
+        $config = getConfig($conn);
+
         // Connects to SSH server
         if (!$ssh->login($user, $key)) {
-            exit('Login Failed');
-            //echo "Login Failed";
+            if ($config["stop_on_error"] == 1) {
+                exit('Login Failed');
+            } else {
+                echo "Login Failed";
+            }
         }
 
         // Executes the command

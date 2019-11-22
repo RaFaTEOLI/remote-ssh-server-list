@@ -8,16 +8,21 @@
     // Requires Connection to MySQL
     require_once("mysql_conn/conn.php");
 
-    // Requires ssh functions
+    // Requires SSH functions
     require_once("functions/functions.php");
 
     // Requires DAO
-    require_once("dao/DaoRemoteSSH.php");
+    require_once("dao/remote_ssh.php");
 
     // Verifies if the command field has a value and if it does, it executes the select
     if (isset($_POST["command"])) {
         $command = $_POST["command"];
-        $select = getServers();
+
+        // Sets the variable select with the servers list
+        $select = getServers($conn);
+
+        // Sets the variable config with the program config
+	    $config = getConfig($conn);
     }
 ?>
 <!DOCTYPE HTML>
@@ -44,7 +49,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="command">Command: </label>
-                    <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Command">
+                    <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Execute</button>
@@ -64,13 +69,19 @@
                         if ($servers["use_rsa"] == 1) {
                             echo "Using RSA key...";
                         ?>
-                            <div class="well"><?php executeCommandWithRSAKey($command, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></div>
-                        <?php    
+                            <div class="well"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></div>
+                        <?php
+                            if ($config["ignoreServer_afterCmd"] == 1) {
+                                setIgnore($conn, $servers["id"]);
+                            }
                         } else {
                             echo "Using Password Authentication...";
                         ?>
-                        <div class="well"><?php executeCommand($command, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
+                        <div class="well"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
                         <?php
+                            if ($config["ignoreServer_afterCmd"] == 1) {
+                                setIgnore($conn, $servers["id"]);
+                            }
                         }
                     }
                 }
