@@ -32,27 +32,28 @@
     <title>Remote Web SSH</title>
 
     <!-- Style -->
-    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
     </style>
 </head>
-
 <body>
-
 <main>
     <div id="center">
     <div id="command">
         <h2>Remote Web SSH - All servers at once</h2>
         <form action="remote_ssh_web.php" method="post">
+            <label for="command">Command: </label>
             <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="command">Command: </label>
+                <div class="form-group col-md-10">       
                     <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>
                 </div>
+                <button type="submit" class="btn btn-primary" style="width: 15%;"><i class="fas fa-running"></i> Run</button>
             </div>
-            <button type="submit" class="btn btn-primary">Execute</button>
         </form>
     </div>
     <br>

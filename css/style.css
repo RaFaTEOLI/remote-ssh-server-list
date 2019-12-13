@@ -1,15 +1,15 @@
-body { margin:0 }
-
-main {
-    min-height: 480px;
-    margin:0 auto;
+body {
+    background-color: rgba(64, 101, 221, 0.61);
+    margin:0; 
 }
 
 #center {
     margin: auto;
     width: 50%;
-    border: 2px solid black;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 10px;
+    background-color: #FFF;
 }
 
 h2 {
