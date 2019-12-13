@@ -61,7 +61,6 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <?php
-
                 if (isset($command)) {
                     while($servers = mysqli_fetch_assoc($select)) {
                         ?>
@@ -78,7 +77,7 @@
                         } else {
                             echo "Using Password Authentication...";
                         ?>
-                        <div class="well"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
+                            <div class="well"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
                         <?php
                             if ($config["ignoreServer_afterCmd"] == 1) {
                                 setIgnore($conn, $servers["id"]);
