@@ -1,6 +1,7 @@
 body {
     background-color: rgba(64, 101, 221, 0.61);
-    margin:0; 
+    margin:0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #center {
@@ -14,4 +15,35 @@ body {
 
 h2 {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.alinhar_centro {
+    margin-left: 16.4%;
+}
+
+#run_command input[type="text"] {
+    width:380px;
+    height:35px;
+    padding:10px;
+    border:1px solid blue;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    float:left;
+    outline: none;
+    margin-left: 18%;
+}
+
+#run_command input[type="button"] {
+    outline: none;
+    cursor: pointer;
+}
+
+.run_command {
+    margin-bottom: 20px;
+}
+
+#line {
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(0, 63, 252, 0.4);;
 }

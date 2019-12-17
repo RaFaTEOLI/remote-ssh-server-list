@@ -34,6 +34,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -46,16 +47,17 @@
     <div id="center">
     <div id="command">
         <h2>Remote Web SSH - All servers at once</h2>
-        <form action="remote_ssh_web.php" method="post">
-            <label for="command">Command: </label>
+        <form action="remote_ssh_web.php" method="post" class="run_command">
+            <!-- <label for="command" class="alinhar_centro">Command: </label> -->
             <div class="row">
-                <div class="form-group col-md-10">       
+                <div id="run_command">
                     <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-running"></i> Run</button>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 15%;"><i class="fas fa-running"></i> Run</button>
             </div>
         </form>
     </div>
+    <div id="line"></div>
     <br>
     <div id="output">
         <div class="row">
@@ -64,7 +66,7 @@
                 if (isset($command)) {
                     while($servers = mysqli_fetch_assoc($select)) {
                         ?>
-                        <label for ="output">Output for command (<?php echo $command ?>) on <?php echo "{$servers["name"]}"; ?></label>
+                        <label for="output">Output for command <i>(<?php echo $command ?>)</i> on <?php echo "{$servers["name"]}"; ?></label>
                         <?php 
                         if ($servers["use_rsa"] == 1) {
                             echo "Using RSA key...";
