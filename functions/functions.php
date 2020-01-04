@@ -1,7 +1,7 @@
 <?php
 	// Includes the phpseclib
-    include('../phpseclib/Net/SSH2.php');
-    include('../phpseclib/Crypt/RSA.php');
+    include('phpseclib/Net/SSH2.php');
+    include('phpseclib/Crypt/RSA.php');
     set_include_path(get_include_path().PATH_SEPARATOR.'phpseclib');
 
 	// Function that receives the parameters to execute the command on ssh with authentication by password
