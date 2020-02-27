@@ -5,6 +5,8 @@ Execute a command on many servers all at once.
 
 Through this PHP program using phpseclib you can execute a command on many servers all at once , without having to connect to each one to perform such action.
 
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/remote_ssh_server_list/master/remote_ssh_web.png)
+
 In this project there are two PHP programs, one called remote_ssh.php, which is the pure code, where you can only set your command and execute it.
 
 There is also another one called remote_ssh_web, where there is a web page to make it look better.
