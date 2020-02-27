@@ -22,7 +22,7 @@
         $select = getServers($conn);
 
         // Sets the variable config with the program config
-	    $config = getConfig($conn);
+        $configIgnore = getConfigByName($conn, 'IGNORE_SERVER_AFTER_CMD');
     }
 ?>
 <!DOCTYPE HTML>
@@ -72,7 +72,7 @@
                         ?>
                             <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></pre>
                         <?php
-                            if ($config["ignoreServer_afterCmd"] == 1) {
+                            if ($configIgnore["parameter"] == 1) {
                                 setIgnore($conn, $servers["id"]);
                             }
                         } else {
@@ -80,7 +80,7 @@
                         ?>
                             <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></pre>
                         <?php
-                            if ($config["ignoreServer_afterCmd"] == 1) {
+                            if ($configIgnore["parameter"] == 1) {
                                 setIgnore($conn, $servers["id"]);
                             }
                         }

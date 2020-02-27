@@ -11,11 +11,11 @@
         // Requires DAO
         require_once("dao/remote_ssh.php");
 
-        $config = getConfig($conn);
+        $configStop = getConfigByName($conn, 'STOP_ON_ERROR');
 
         // Connects to SSH server
         if (!$ssh->login($user, $password)) {
-            if ($config["stop_on_error"] == 1) {
+            if ($configStop["parameter"] == 1) {
                 exit('Login Failed');
             } else {
                 echo "Login Failed";
@@ -39,11 +39,11 @@
         // Requires DAO
         require_once("dao/remote_ssh.php");
 
-        $config = getConfig($conn);
+        $configStop = getConfigByName($conn, 'STOP_ON_ERROR');
 
         // Connects to SSH server
         if (!$ssh->login($user, $key)) {
-            if ($config["stop_on_error"] == 1) {
+            if ($configStop["parameter"] == 1) {
                 exit('Login Failed');
             } else {
                 echo "Login Failed";

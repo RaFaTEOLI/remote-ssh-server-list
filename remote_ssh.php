@@ -18,7 +18,7 @@
 	$select = getServers($conn);
 
 	// Sets the variable config with the program config
-	$config = getConfig($conn);
+	$configIgnore = getConfigByName($conn, 'IGNORE_SERVER_AFTER_CMD');
 
 	// Creates the variable command
 	$command = "ifconfig";
@@ -31,14 +31,14 @@
 			echo "Using RSA key..." . "<br>";
 			// Calls the function to execute the command on SSH using RSA Key
 			executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]);
-			if ($config["ignoreServer_afterCmd"] == 1) {
+			if ($configIgnore["parameter"] == 1) {
 				setIgnore($conn, $servers["id"]);
 			}
 	    } else {
 			echo "Using Password Authentication..." . "<br>";
 			// Calls the function to execute the command on SSH using Password Authentication
 			executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]);
-			if ($config["ignoreServer_afterCmd"] == 1) {
+			if ($configIgnore["parameter"] == 1) {
 				setIgnore($conn, $servers["id"]);
 			}
 	    }

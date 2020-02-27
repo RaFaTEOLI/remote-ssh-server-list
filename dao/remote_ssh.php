@@ -15,9 +15,9 @@ function getServers($conn) {
 }
 
 // Function that returns the program config
-function getConfig($conn) {
+function getConfigByName($conn, $name) {
     // Builds the select query
-    $query_config = "SELECT * FROM config LIMIT 1";
+    $query_config = "SELECT * FROM config WHERE name = '{$name}' LIMIT 1";
     $select = mysqli_query($conn, $query_config);
 
     // Sees if it returns an error

@@ -11,18 +11,20 @@ CREATE TABLE servers (
   use_rsa INT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (id)
 )
-  COLLATE='latin1_swedish_ci'
+  COLLATE='utf8_unicode_ci'
   ENGINE=InnoDB
 ;
 
 CREATE TABLE config (
-  id INT(10) NOT NULL AUTO_INCREMENT,
-  stop_on_error INT(1) NOT NULL DEFAULT '0',
-  ignoreServer_afterCmd INT(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (id)
+	id INT(10) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(35) NOT NULL,
+	description VARCHAR(100) NOT NULL,
+	parameter VARCHAR(35),
+	PRIMARY KEY(id)
 )
-  COLLATE='latin1_swedish_ci'
+  COLLATE='utf8_unicode_ci'
   ENGINE=InnoDB
 ;
 
-INSERT INTO config (stop_on_error, ignoreServer_afterCmd) VALUES (0, 0);
+INSERT INTO config (name, description, parameter) VALUES ('STOP_ON_ERROR', 'Stops the execution when it catches an error', 1);
+INSERT INTO config (name, description, parameter) VALUES ('IGNORE_SERVER_AFTER_CMD', 'Sets "ignore_server" column to 1 after command execution', 1);
