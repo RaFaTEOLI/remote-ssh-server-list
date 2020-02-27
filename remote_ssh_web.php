@@ -48,7 +48,6 @@
     <div id="command">
         <h2>Remote Web SSH - All servers at once</h2>
         <form action="remote_ssh_web.php" method="post" class="run_command">
-            <!-- <label for="command" class="alinhar_centro">Command: </label> -->
             <div class="row">
                 <div id="run_command">
                     <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>

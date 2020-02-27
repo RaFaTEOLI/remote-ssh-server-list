@@ -21,10 +21,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-.alinhar_centro {
-    margin-left: 16.4%;
-}
-
 #run_command input[type="text"] {
     width:380px;
     height:35px;
@@ -34,7 +30,6 @@ h2 {
     border-bottom-left-radius: 5px;
     float:left;
     outline: none;
-    margin-left: 18%;
 }
 
 #run_command input[type="button"] {
@@ -43,6 +38,10 @@ h2 {
 }
 
 .run_command {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
