@@ -45,51 +45,51 @@
 <body>
 <main>
     <div id="center">
-    <div id="command">
-        <h2>Remote Web SSH - All servers at once</h2>
-        <form action="remote_ssh_web.php" method="post" class="run_command">
-            <div class="row">
-                <div id="run_command">
-                    <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-running"></i> Run</button>
+        <div id="command">
+            <h2>Remote Web SSH - All servers at once</h2>
+            <form action="remote_ssh_web.php" method="post" class="run_command">
+                <div class="row">
+                    <div id="run_command">
+                        <input type="text" class="form-control" name="command" aria-describedby="command" placeholder="Type the command..." required>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-running"></i> Run</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
-    <div id="line"></div>
-    <br>
-    <div id="output">
-        <div class="row">
-            <div class="form-group col-md-12">
-                <?php
-                if (isset($command)) {
-                    while($servers = mysqli_fetch_assoc($select)) {
-                        ?>
-                        <label for="output">Output for command <i>(<?php echo $command ?>)</i> on <?php echo "{$servers["name"]}"; ?></label>
-                        <?php 
-                        if ($servers["use_rsa"] == 1) {
-                            echo "Using RSA key...";
-                        ?>
-                            <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></pre>
-                        <?php
-                            if ($configIgnore["parameter"] == 1) {
-                                setIgnore($conn, $servers["id"]);
-                            }
-                        } else {
-                            echo "Using Password Authentication...";
-                        ?>
-                            <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></pre>
-                        <?php
-                            if ($configIgnore["parameter"] == 1) {
-                                setIgnore($conn, $servers["id"]);
+            </form>
+        </div>
+        <div id="line"></div>
+        <br>
+        <div id="output">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <?php
+                    if (isset($command)) {
+                        while($servers = mysqli_fetch_assoc($select)) {
+                            ?>
+                            <label for="output">Output for command <i>(<?php echo $command ?>)</i> on <?php echo "{$servers["name"]}"; ?></label>
+                            <?php 
+                            if ($servers["use_rsa"] == 1) {
+                                echo "Using RSA key...";
+                            ?>
+                                <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></pre>
+                            <?php
+                                if ($configIgnore["parameter"] == 1) {
+                                    setIgnore($conn, $servers["id"]);
+                                }
+                            } else {
+                                echo "Using Password Authentication...";
+                            ?>
+                                <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></pre>
+                            <?php
+                                if ($configIgnore["parameter"] == 1) {
+                                    setIgnore($conn, $servers["id"]);
+                                }
                             }
                         }
                     }
-                }
-                ?>
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </main>
 </body>
