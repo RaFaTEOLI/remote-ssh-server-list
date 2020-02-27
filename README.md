@@ -28,4 +28,4 @@ There is a field called "use_rsa", set it 1 to use a key to access the server, a
 
 <h4>Version 1.1 added configuration table</h4>
 It was added a table for the database, that you can set some configurations, the first one is "stop_on_error", which means, if the program is executing commands on many servers and for some reason it catches an error it will stop on that server, only if it's set 1, otherwise it will keep going.
-The other field is "ignoreServer_afterCmg", and this field if it's set 1, it will set the "ignore_server" field on the servers table after the program executes the command there, so if you run the program again, it will ignore the servers that you've already executed the command.
+The other field is "ignoreServer_afterCmd", and this field if it's set 1, it will set the "ignore_server" field on the servers table after the program executes the command there, so if you run the program again, it will ignore the servers that you've already executed the command.
