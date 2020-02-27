@@ -71,7 +71,7 @@
                         if ($servers["use_rsa"] == 1) {
                             echo "Using RSA key...";
                         ?>
-                            <div class="well"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></div>
+                            <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommandWithRSAKey($command, $conn, $servers["ip"], $servers["user"], $servers["port"], $servers["key_path"], $servers["key_passphrase"]); ?></pre>
                         <?php
                             if ($config["ignoreServer_afterCmd"] == 1) {
                                 setIgnore($conn, $servers["id"]);
@@ -79,7 +79,7 @@
                         } else {
                             echo "Using Password Authentication...";
                         ?>
-                            <div class="well"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></div>
+                            <pre style="font-family: 'Montserrat', sans-serif;"><?php executeCommand($command, $conn, $servers["ip"], $servers["user"], $servers["password"], $servers["port"]); ?></pre>
                         <?php
                             if ($config["ignoreServer_afterCmd"] == 1) {
                                 setIgnore($conn, $servers["id"]);
