@@ -13,6 +13,9 @@
 
     // Requires DAO
     require_once("dao/remote_ssh.php");
+	
+	ini_set('max_execution_time', 100000);
+    set_time_limit(100000);
 
     // Verifies if the command field has a value and if it does, it executes the select
     if (isset($_POST["command"])) {
