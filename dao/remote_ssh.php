@@ -3,7 +3,7 @@
 // Function that returns the servers list
 function getServers($conn) {
     // Builds the select query
-    $query_servers = "SELECT * FROM servers_sincportab WHERE ignore_server <> 1 LIMIT 500";
+    $query_servers = "SELECT * FROM servers WHERE ignore_server <> 1 LIMIT 500";
     $select = mysqli_query($conn, $query_servers);
 
     // Sees if it returns an error
@@ -31,7 +31,7 @@ function getConfigByName($conn, $name) {
 
 function setIgnore($conn, $id) {
     // Builds the update query
-    $query_update = "UPDATE servers_sincportab SET ignore_server = 1 WHERE id = {$id}";
+    $query_update = "UPDATE servers SET ignore_server = 1 WHERE id = {$id}";
     $update = mysqli_query($conn, $query_update);
 
     // Sees if it returns an error
